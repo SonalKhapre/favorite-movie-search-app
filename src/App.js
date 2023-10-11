@@ -45,8 +45,11 @@ useEffect(()=>{
 
 useEffect(()=>{
   const movieFavourites = JSON.parse(localStorage.getItem('movie-search-app-favourites'));
-  setFavourites(movieFavourites);
-}, [])
+  if(movieFavourites){
+    setFavourites(movieFavourites);
+  }
+ 
+}, []);
 
 
   return (
