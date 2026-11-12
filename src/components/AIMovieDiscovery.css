@@ -1,0 +1,53 @@
+.cinemind {
+  margin: 36px 50px 48px;
+  padding: 30px;
+  border: 1px solid #393047;
+  border-radius: 18px;
+  background: radial-gradient(circle at top right, #302044 0, #1b1724 38%, #171717 78%);
+  color: #f8f5ff;
+}
+.cinemind-heading, .cinemind-form-footer, .cinemind-results-heading {
+  display: flex; justify-content: space-between; align-items: center; gap: 18px;
+}
+.cinemind-eyebrow { color: #c3a5ff; font-size: 11px; font-weight: 700; letter-spacing: 2px; margin: 0 0 8px; }
+.cinemind-heading h2 { font-size: 34px; margin: 0; }
+.cinemind-heading h2 span { color: #c3a5ff; }
+.cinemind-intro { color: #c4bdce; margin: 8px 0 22px; }
+.cinemind-orbit { font-size: 48px; color: #d5baff; padding: 10px 20px; }
+.cinemind-form { padding: 18px; border: 1px solid #50415f; border-radius: 13px; background: rgba(12, 10, 16, .7); }
+.cinemind-form label { display: block; font-weight: 600; margin-bottom: 12px; }
+.cinemind-form textarea {
+  box-sizing: border-box; width: 100%; resize: vertical; border: 1px solid #51465d;
+  border-radius: 9px; background: #211c29; color: #fff; padding: 13px; font: inherit; line-height: 1.5;
+}
+.cinemind-form textarea:focus { outline: 2px solid #a985e8; border-color: transparent; }
+.cinemind-form-footer { margin-top: 12px; color: #a9a0b5; font-size: 12px; }
+.cinemind-form-footer button { border: 0; border-radius: 8px; background: #b995f1; color: #1a1025; padding: 11px 17px; font-weight: 700; cursor: pointer; }
+.cinemind-form-footer button:disabled { opacity: .5; cursor: not-allowed; }
+.cinemind-examples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; color: #b8adca; font-size: 12px; }
+.cinemind-examples button { border: 1px solid #51465d; border-radius: 20px; background: transparent; color: #d8cde7; padding: 7px 10px; cursor: pointer; }
+.cinemind-status, .cinemind-error { margin-top: 18px; color: #d6c6f0; }
+.cinemind-error { color: #ffaaa8; }
+.cinemind-results { margin-top: 28px; }
+.cinemind-results-heading { margin-bottom: 16px; }
+.cinemind-results-heading h3 { margin: 0; font-size: 23px; }
+.cinemind-results-heading > span { color: #b8adca; font-size: 13px; }
+.cinemind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.cinemind-card { overflow: hidden; border: 1px solid #403748; border-radius: 12px; background: #211d27; }
+.cinemind-card > img, .cinemind-no-poster { display: block; width: 100%; height: 290px; object-fit: cover; background: #302a37; }
+.cinemind-no-poster { display: grid; place-items: center; color: #b8adca; }
+.cinemind-card-content { padding: 14px; }
+.cinemind-card-meta { display: flex; flex-wrap: wrap; gap: 9px; color: #c2b8cf; font-size: 11px; }
+.cinemind-card-meta strong { color: #c8a8ff; }
+.cinemind-card h4 { margin: 9px 0 4px; font-size: 18px; }
+.cinemind-genre { color: #c3a5ff; font-size: 12px; margin: 0 0 9px; }
+.cinemind-reason, .cinemind-card details { color: #d0c9d8; font-size: 13px; line-height: 1.5; }
+.cinemind-card summary { cursor: pointer; color: #c3a5ff; }
+.cinemind-card a { display: inline-block; margin-top: 12px; color: #d5baff; font-size: 13px; }
+@media (max-width: 650px) {
+  .cinemind { margin: 26px 14px 36px; padding: 18px; }
+  .cinemind-heading h2 { font-size: 28px; }
+  .cinemind-orbit { display: none; }
+  .cinemind-form-footer { align-items: flex-end; }
+  .cinemind-examples { align-items: flex-start; flex-direction: column; }
+}
