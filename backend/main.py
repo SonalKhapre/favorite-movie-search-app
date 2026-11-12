@@ -157,10 +157,10 @@ async def discover_movies(request: DiscoveryRequest):
     # Step 1: turn natural language into a small, safe search plan.
     planner_prompt = f"""
 You are the search-planning component of a movie discovery application.
-Convert the user's request into JSON only. Do not recommend movie titles.
+Convert the user's request into JSON only. Propose 3 to 5 specific existing movie title search terms likely to satisfy it. OMDb searches by title, not by genre, mood, or country, so never use broad genre phrases as search_terms. The backend will verify every returned title against OMDb before showing it.
 Return this exact shape:
 {{
-  "search_terms": ["up to 3 short title/topic search phrases"],
+  "search_terms": ["3 to 5 specific movie title search terms"],
   "min_year": null,
   "max_year": null,
   "min_rating": null,
@@ -170,7 +170,7 @@ Return this exact shape:
   "language_preference": null
 }}
 Use null when the user did not specify a constraint. search_terms must contain
-1 to 3 concise terms that can be used with the OMDb title search endpoint.
+3 to 5 specific movie titles, not genres or moods, that can be used with the OMDb title search endpoint.
 Do not invent constraints. The user request is:
 {query}
 """
@@ -178,7 +178,7 @@ Do not invent constraints. The user request is:
     terms = plan.get("search_terms", [])
     if not isinstance(terms, list):
         terms = []
-    terms = [str(term).strip() for term in terms if str(term).strip()][:3]
+    terms = [str(term).strip() for term in terms if str(term).strip()][:5]
     if not terms:
         terms = [query[:60]]
 
@@ -217,8 +217,8 @@ Do not invent constraints. The user request is:
             return False
         if plan.get("max_year") and year and year > int(plan["max_year"]):
             return False
-        if plan.get("min_rating") and rating is not None:
-            if rating < float(plan["min_rating"]):
+        if plan.get("min_rating"):
+            if rating is None or rating < float(plan["min_rating"]):
                 return False
 
         genres = {part.strip().lower() for part in movie.get("Genre", "").split(",")}
