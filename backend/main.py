@@ -143,6 +143,13 @@ async def health():
     return {"status": "ok", "service": "cinemind-ai"}
 
 
+@app.get("/api/search")
+async def search_movies(query: str = Field(min_length=2, max_length=100)):
+    """Search OMDb from the backend so the API key never reaches the browser."""
+    results = await search_omdb(query.strip())
+    return {"movies": results}
+
+
 @app.post("/api/discover")
 async def discover_movies(request: DiscoveryRequest):
     query = request.query.strip()
