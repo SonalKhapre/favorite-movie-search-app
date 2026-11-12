@@ -1,13 +1,18 @@
 import React from 'react';
 import './SearchBox.css';
 
-const SearchBox = (props) => {
+const SearchBox = ({ searchValue, setSearchValue }) => {
   return (
-    <div className='searchbox'>
-    <span><i class="fa fa-search" aria-hidden="true"></i></span>
-     <input placeholder='type to search....' value={props.value} onChange={(event)=>props.setSearchValue(event.target.value)}></input>
-     </div>
-  )
-}
+    <div className="searchbox">
+      <span><i className="fa fa-search" aria-hidden="true"></i></span>
+      <input
+        placeholder="type to search..."
+        value={searchValue}
+        onChange={(event) => setSearchValue(event.target.value)}
+        aria-label="Search movies"
+      />
+    </div>
+  );
+};
 
-export default SearchBox
+export default SearchBox;
