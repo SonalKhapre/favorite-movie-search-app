@@ -5,7 +5,7 @@ from typing import Any
 
 import httpx
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -144,7 +144,7 @@ async def health():
 
 
 @app.get("/api/search")
-async def search_movies(query: str = Field(min_length=2, max_length=100)):
+async def search_movies(query: str = Query(min_length=2, max_length=100)):
     """Search OMDb from the backend so the API key never reaches the browser."""
     results = await search_omdb(query.strip())
     return {"movies": results}
